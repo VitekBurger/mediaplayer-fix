@@ -8,7 +8,7 @@ app_id="org.prismlauncher.PrismLauncher"
 flatpak override --user "$app_id" \
   --nofilesystem=/usr/lib \
   --filesystem=host-os:ro \
-  --env=LD_LIBRARY_PATH=/run/host/usr/lib:/run/host/usr/lib64
+  --env=LD_LIBRARY_PATH=/app/lib:/usr/lib/x86_64-linux-gnu:/run/host/usr/lib:/run/host/usr/lib64
 
 echo "Enabled read-only host FFmpeg lookup for $app_id"
 echo "Restart Prism Launcher before testing MediaPlayer."

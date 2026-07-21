@@ -35,7 +35,7 @@ local installation, enable the read-only host lookup once:
 ./native/enable-flatpak-host-ffmpeg.sh
 ```
 
-This exposes host libraries below `/run/host/usr/lib` and sets
-`LD_LIBRARY_PATH` for Prism. Restart Prism after running it. The script does
-not grant write access. A portable distributable still needs a matching
-FFmpeg Flatpak extension or bundled FFmpeg build.
+This exposes host libraries below `/run/host/usr/lib` and preserves the KDE
+runtime paths in `LD_LIBRARY_PATH` for Prism itself. Restart Prism after
+running it. The script does not grant write access. A portable distributable
+still needs a matching FFmpeg Flatpak extension or bundled FFmpeg build.
