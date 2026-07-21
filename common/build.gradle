@@ -17,6 +17,7 @@ dependencies {
 // exists. This makes the regular NeoForge remapJar include libMediaPlayer.so.
 def linuxNative = rootProject.file("native/linux/build/libMediaPlayer.so")
 tasks.named("processResources") {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     from(linuxNative.parentFile) {
         include linuxNative.name
         into ""
