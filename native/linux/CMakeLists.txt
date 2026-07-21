@@ -4,7 +4,10 @@ project(MediaPlayer LANGUAGES C CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-find_package(JNI REQUIRED)
+set(JNI_INCLUDE_DIRS "${JNI_INCLUDE_DIRS}" CACHE PATH "JNI include directories")
+if(NOT JNI_INCLUDE_DIRS)
+    find_package(JNI REQUIRED)
+endif()
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(FFMPEG REQUIRED IMPORTED_TARGET
     libavcodec libavformat libavutil libswresample libswscale)
