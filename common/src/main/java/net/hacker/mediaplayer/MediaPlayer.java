@@ -16,7 +16,12 @@ public final class MediaPlayer {
     public static BiFunction<Audio, Entity, SoundInstance> audioFactory;
 
     static {
-        var name = System.mapLibraryName("MediaPlayer");
+        var os = System.getProperty("os.name", "").toLowerCase(java.util.Locale.ROOT);
+        var name = os.contains("win") ? "MediaPlayer.dll" :
+            os.contains("linux") ? "libMediaPlayer.so" : null;
+        if (name == null) {
+            throw new RuntimeException("MediaPlayer has no native backend for OS: " + os);
+        }
         var resource = "/" + name;
         try (var in = MediaPlayer.class.getResourceAsStream(resource)) {
             if (in == null) throw new UnsatisfiedLinkError("Missing native library: " + resource);
