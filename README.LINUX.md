@@ -28,9 +28,14 @@ and embedded in the resulting mod JAR.
 
 ## Flatpak note
 
-The Prism Launcher Flatpak must provide compatible FFmpeg runtime libraries.
-The host `/usr/lib` is not automatically visible inside the Flatpak sandbox.
-If `libavcodec`, `libavformat`, `libswscale` or `libswresample` are absent in
-the runtime, the native library will fail to load even though it works on the
-host. The final distributable needs a matching FFmpeg runtime extension or a
-properly bundled FFmpeg build.
+The Prism Launcher Flatpak does not include FFmpeg runtime libraries. For a
+local installation, enable the read-only host lookup once:
+
+```sh
+./native/enable-flatpak-host-ffmpeg.sh
+```
+
+This exposes host libraries below `/run/host/usr/lib` and sets
+`LD_LIBRARY_PATH` for Prism. Restart Prism after running it. The script does
+not grant write access. A portable distributable still needs a matching
+FFmpeg Flatpak extension or bundled FFmpeg build.
